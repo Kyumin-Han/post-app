@@ -87,7 +87,8 @@ class PostsController extends Controller
         // dd($request->page);
         $page = $request->page;
         $post = Post::find($id);
-        
+        $post->count++; // 요청이 올 때마다 1씩 증가시킴
+        $post->save();
         // dd($name);
         
         return view('posts.show', compact('post', 'page'));

@@ -24,9 +24,6 @@
         <div class="main mt-5">
             <a href="{{ route('dashboard') }}">Dashborard</a>
             <h1>게시글 리스트</h1>
-            @auth
-            <a href="/posts/create" class="btn btn-primary">게시글 작성</a>
-            @endauth
             <ul class="list-group list-group-flush mt-3">
                 @foreach ($mypost as $post)
                 <li class="list-group-item"></li>
@@ -50,6 +47,9 @@
             <hr>
             @endforeach
         </ul>
+        @auth
+        <a href="/posts/create" class="btn btn-primary">게시글 작성</a>
+        @endauth
         <div class="mt-5">
             {{ $mypost->links() }}
         </div>
