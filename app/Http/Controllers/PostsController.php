@@ -87,9 +87,19 @@ class PostsController extends Controller
         // dd($request->page);
         $page = $request->page;
         $post = Post::find($id);
-        $post->count++; // 요청이 올 때마다 1씩 증가시킴
-        $post->save();
+        //$post->count++; // 요청이 올 때마다 1씩 증가시킴
+        //$post->save();
         // dd($name);
+
+        /*
+            글을 조회한 사용자들 중에 현재 로그인 한 사용자가 포함되어 있는지를 체크
+            포함되어 있지 않으면 추가하기
+            포함되어 있으면 다음 단계로 넘어가기
+        */
+        // post_user 테이블을 이용해서 한 사용자당 조회수는 한번만 올릴 수 있도록 한다
+        if(Auth::user() != null && $post->viewers->contains(Auth::user()) == false) {
+            $post->viewers()->attach(Auth::user()->id);
+        }
         
         return view('posts.show', compact('post', 'page'));
     }
