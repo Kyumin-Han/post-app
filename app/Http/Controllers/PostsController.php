@@ -104,6 +104,8 @@ class PostsController extends Controller
         return view('posts.show', compact('post', 'page'));
     }
 
+    
+
     public function edit(Request $request, Post $post) {
 
         // $post = Post::find($id);
@@ -167,12 +169,5 @@ class PostsController extends Controller
         return redirect()->route('posts.index', ['page'=>$page]);
     }
 
-    public function mylist() {
-        $id = auth()->user()->id;
-        $user = User::find($id);
-        // dd($user);
-        $mypost = $user->posts()->latest()->paginate(5);
-        // $posts = Post::latest()->paginate(5);
-        return view('posts.mypost', ['mypost'=>$mypost]);
-    }
+    
 }

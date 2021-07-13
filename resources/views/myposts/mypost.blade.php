@@ -29,7 +29,7 @@
                 <li class="list-group-item"></li>
                 <span>
                     <a
-                        href="{{ route('posts.show', ['id' => $post->id, 'page'=>$mypost->currentPage()]) }}">
+                        href="{{ route('posts.myshow', ['id'=>$post->id, 'page'=>$mypost->currentPage()]) }}">
                         Title :{{ $post->title }}
                     </a>
                 </span>
@@ -48,7 +48,7 @@
             @endforeach
         </ul>
         @auth
-        <a href="/posts/create" class="btn btn-primary">게시글 작성</a>
+        <a href="/myposts/mycreate" class="btn btn-primary">게시글 작성</a>
         @endauth
         <div class="mt-5">
             {{ $mypost->links() }}
