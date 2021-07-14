@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ChartController;
 use App\Http\Controllers\MyPostsController;
 use App\Http\Controllers\PostsController;
 use App\Models\Post;
@@ -78,6 +79,7 @@ Route::delete('/myposts/{id}', [MyPostsController::class, 'mydestroy'])->name('p
 
 Route::delete('/posts/{id}', [PostsController::class, 'destroy'])->name('posts.delete');
 
+Route::get('/chart/index', [ChartController::class, 'index']);
 
 
 
