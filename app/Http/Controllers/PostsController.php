@@ -37,7 +37,7 @@ class PostsController extends Controller
             'imageFile' => 'image|max:2000'
         ]);
 
-        // dd($request);
+        dd($request);
 
         // DB에 저장
         $post = new Post();
@@ -104,7 +104,16 @@ class PostsController extends Controller
         return view('posts.show', compact('post', 'page'));
     }
 
-    
+    public function like(Request $request, $id) {
+        $page = $request->page;
+        $post = Post::find($id);
+
+        if(Auth::user() != null && $post->likes->contains(Auth::user()) == false) {
+            $post->likes()->attach(Auth::user()->id);
+        }
+        
+        return redirect()->route('posts.show', compact('post', 'page'));
+    }
 
     public function edit(Request $request, Post $post) {
 

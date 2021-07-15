@@ -53,4 +53,8 @@ class User extends Authenticatable
         // 테이블의 이름을 관례를 따르지 않았을 때
         return $this->belongsToMany(Post::class, 'post_user', 'user_id', 'post_id', 'id', 'id', 'posts');
     }
+
+    public function liked_posts() {
+        return $this->belongsToMany(Post::class, 'like', 'user_id', 'post_id', 'id', 'id', 'posts');
+    }
 }

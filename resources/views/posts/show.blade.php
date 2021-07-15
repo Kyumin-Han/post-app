@@ -25,6 +25,10 @@
                 display: block;
                 text-align: center;
             }
+            .like {
+                display: block;
+                text-align: right;
+            }
         </style>
     </head>
     <body>
@@ -86,17 +90,35 @@
                         readonly="readonly"
                         value="{{ $post->user->name }}">
                 </div>
+                <div class="mt-3 like">
+
+                    <a href="'{{ route('posts.like') }}">
+                        <button
+                            type="button"
+                            id="like"
+                            class="btn btn-outline-danger btn-sm"
+                            onclick="change()">좋아요</button>
+                    </a>
+
+                    <script>
+                        function change() {
+                            var x = document.getElementById('like');
+                            x.style.color = "white";
+                            // x.style.font.color = "white";
+                            x.style.backgroundColor = "red";
+                        }
+                    </script>
+                </div>
                 @auth
                 {{-- @if (auth()->user()->id == $post->user_id) --}}
                 @can('update', $post)
                 <div class="flex">
-                        <button
+                    <button
                         class="btn btn-warning"
-                        
                         onclick="location.href='{{ route('posts.edit', ['post'=>$post->id, 'page'=>$page]) }}'">수정</button>
-                    
 
-                    <form class="deletebtn"
+                    <form
+                        class="deletebtn"
                         action="{{ route('posts.delete', ['id'=>$post->id, 'page'=>$page]) }}"
                         method="post">
                         @csrf @method("delete")
