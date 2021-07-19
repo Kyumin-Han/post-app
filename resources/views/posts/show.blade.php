@@ -92,13 +92,13 @@
                 </div>
                 <div class="mt-3 like">
 
-                    <a href="'{{ route('posts.like') }}">
+                    {{-- <a href="{{ route('posts.like') }}"> --}}
                         <button
                             type="button"
                             id="like"
                             class="btn btn-outline-danger btn-sm"
-                            onclick="change()">좋아요</button>
-                    </a>
+                            onclick="location.href='{{ route('posts.like', ['id'=>$post->id, 'page'=>$page]) }}'">좋아요</button>
+                    {{-- </a> --}}
 
                     <script>
                         function change() {

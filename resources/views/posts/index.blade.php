@@ -25,6 +25,11 @@
                     {{ $post->viewers->count() }}
                     {{ $post->viewers->count() > 0 ? Str::plural('view', $post->count) : 'view' }}
                 </span>
+
+                <span>
+                    {{ $post->likes->count() }}
+                    {{ $post->likes->count() > 0 ? Str::plural('like', $post->likes->count()) : 'like' }}
+                </span>
                 {{-- <span>written by
                     {{ $user->name }}
             </span>

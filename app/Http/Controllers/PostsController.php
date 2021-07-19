@@ -112,7 +112,7 @@ class PostsController extends Controller
             $post->likes()->attach(Auth::user()->id);
         }
         
-        return redirect()->route('posts.show', compact('post', 'page'));
+        return redirect()->route('posts.show', ['id'=>$post->id, 'page'=>$request->page]);
     }
 
     public function edit(Request $request, Post $post) {

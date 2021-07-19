@@ -81,6 +81,6 @@ Route::delete('/posts/{id}', [PostsController::class, 'destroy'])->name('posts.d
 
 Route::get('/chart/index', [ChartController::class, 'index']);
 
-Route::get('/posts/likes', [PostsController::class, 'like'])->name('posts.like');
+Route::get('/posts/likes/{id}', [PostsController::class, 'like'])->name('posts.like');
 
 
